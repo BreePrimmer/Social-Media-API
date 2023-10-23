@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const reactionSchema = new Schema(
     {
@@ -18,6 +18,9 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now(), 
+            get: function(date){
+                return dayJS(date).format('MM/DD/YYYY')
+            }
         }
     },
     {
@@ -27,7 +30,4 @@ const reactionSchema = new Schema(
     }
 );
 
-reactionSchema
-    .method.formatDate = function () {
-        
-    }
+module.exports = reactionSchema
