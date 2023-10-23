@@ -53,23 +53,50 @@ const thoughtSchema = new Schema(
     }
 );
 
-thoughtSchema
-    .methods.formatDate = function() {
+const Thought = model('Thought', thoughtSchema);
 
+const userSchema = new Schema(
+    {
+        username: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+        },
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
+            }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ]
+    }, 
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
     }
-    .virtual('reactionCount')
-    .get(function () {
-        return this.reactions.length
-    });
+);
 
-const Thought = model('thought', thoughtSchema);
+const thought = await Thought.create({
+    thoughtText: 'I like crickets',
+    username: 'bluefrog'
+})
 
-Thought
-    .create({
-        thoughtText: 'My favorite food is crickets',
-        
-
-    })
-
-module.exports = Thought;
-
+User.create({
+    username: 'bluefrog',
+    email: 'blue@gmail.com',
+    thoughts: thought
+})

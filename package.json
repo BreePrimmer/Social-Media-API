@@ -5,6 +5,6 @@
     },
     "scripts": {
         "start": "npm start",
-        "seed": "node seeds/seed.js"
+        "seed": "node seed.js"
     }
 }
