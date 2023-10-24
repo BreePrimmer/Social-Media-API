@@ -16,3 +16,9 @@ https://mongoosejs.com/docs/tutorials/findoneandupdate.html
 '$push / $pull' https://mongoosejs.com/docs/5.x/docs/api/array.html#mongoosearray_MongooseArray-pull
 
 'save()' https://mongoosejs.com/docs/documents.html#updating-using-save
+
+https://dev.to/alexmercedcoder/mongodb-relationships-using-mongoose-in-nodejs-54cc
+
+https://stackoverflow.com/questions/12495891/what-is-the-v-field-in-mongoose
+
+https://www.mongodb.com/docs/manual/reference/operator/update/set/
