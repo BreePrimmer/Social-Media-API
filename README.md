@@ -10,6 +10,8 @@ The dependencies are already listed in the package.json, so you can run `npm ins
 
 ## Usage
 
+[Walkthrough video](https://watch.screencastify.com/v/BtQ7IHnvciBWnh0NpzqX)
+
 To use this API, start up the app and then use insomnia to interact with the database! You can use the CRUD routes that are found in the routes folder to add users, add thoughts, and add reactions! You can also retrieve the data, update data, and delete data. 
 
 -note: As of right now, there are issues with the thought and reaction routes. They are mostly broken unfortunately, but the user routes are working!
