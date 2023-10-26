@@ -13,7 +13,7 @@ module.exports = {
     // get a single thought
     async getSingleThought(req, res) {
         try{
-            const thought = await Thought.findOne({_id: req.params.thoughtId});
+            const thought = await Thought.findOne({_id: req.params.id});
             res.status(200).json(thought);
         } catch (err) {
             res.status(500).json(err);
