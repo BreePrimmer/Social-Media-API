@@ -1,17 +1,18 @@
-const { User } = require('../Models');
+const { User, Thought } = require('../Models');
 
 module.exports = {
     // gets all users
     async getUsers (req, res) {
         try {
             // finds all users and populates the thoughts
-            const users = await User.find()
-            .populate({
-                path: 'thoughts',
-                // -__v has to do with 'versionKey', and this will
-                // keep track of the versions of documents.
-                select: '-__v'
-            });
+            const users = await User.find({})
+            .populate(
+            //     // path: "thoughts",
+            //     // // -__v has to do with 'versionKey', and this will
+            //     // // keep track of the versions of documents.
+            //     // select: "-__v"
+            //     'thoughts'
+            );
             res.status(200).json(users);
         } catch (err) {
             res.status(500).json(err);
@@ -20,10 +21,10 @@ module.exports = {
     // get a single user
     async getSingleUser (req, res) {
         try {
-            const user = await User.findOne({_id: req.params.id})
+            const user = await User.findOne({_id: req.params.userId})
             .populate({
-                path: 'thoughts',
-                select: '-__v'
+                path: "thoughts",
+                select: "-__v"
             });
             res.status(200).json(user);
         } catch (err) {
@@ -43,7 +44,7 @@ module.exports = {
     async updateUser (req, res) {
         try {
             const updatedUser = await User.findOneAndUpdate(
-                { _id: req.params.id },
+                { _id: req.params.userId },
                 // set replaces the value of a field with a new value
                 { $set: req.body },
                 { new: true, runValidators: true }
@@ -56,8 +57,8 @@ module.exports = {
     // delete a user
     async deleteUser (req, res) {
         try {
-            const deletedUser = User.findOneAndDelete(
-                { _id: req.params.id },
+            const deletedUser = await User.findOneAndDelete(
+                { _id: req.params.userId },
             )
             res.status(200).json(deletedUser);
         } catch (err) {
